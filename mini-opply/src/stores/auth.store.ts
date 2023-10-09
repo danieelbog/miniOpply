@@ -1,0 +1,66 @@
+import { api } from "@/api/index";
+import { defineStore } from "pinia";
+import { IAuthToken } from "../types/IAuthToken";
+import { ref } from "vue";
+
+export const useAuthStore = defineStore("auth", () => {
+	const authToken = ref({} as IAuthToken);
+
+	const setAuthToken = (authTokenDto: IAuthToken) => {
+		try {
+			localStorage.setItem("authToken", JSON.stringify(authTokenDto));
+			authToken.value = authTokenDto;
+			api.defaults.headers.common["Authorization"] = authToken.value.token;
+		} catch (error) {
+			console.error("Error storing string in local storage:", error);
+		}
+	};
+
+	const isAuthenticated = () => {
+		return authToken.value?.token;
+	};
+
+	const getAuthTokenFromLocalStorage = () => {
+		if (authToken.value && authToken.value.token) return;
+		try {
+			const storedAuthToken = JSON.parse(localStorage.getItem("authToken")) as IAuthToken;
+			if (storedAuthToken && storedAuthToken.token) {
+				setAuthToken(storedAuthToken);
+			}
+		} catch (error) {
+			console.error("Error retrieving authToken from local storage:", error);
+		}
+	};
+
+	const getAuthToken = async (authTokenDto: IAuthToken) => {
+		if (authToken.value && authToken.value.token) return;
+		getAuthTokenFromLocalStorage();
+		try {
+			const response = await api.post("/api-token-auth/", authTokenDto);
+			if (response.data) {
+				authTokenDto.token = response.data.token;
+				setAuthToken(authTokenDto);
+			} else throw new Error("Token value is empty");
+		} catch (error) {
+			console.error("Error fetching/authenticating:", error);
+		}
+	};
+
+	const logout = async () => {
+		api.defaults.headers.common["Authorization"] = "";
+		try {
+			localStorage.removeItem("authToken");
+		} catch (error) {
+			console.error("Error removing authToken from local storage:", error);
+		}
+		authToken.value = null;
+	};
+
+	return {
+		setAuthToken,
+		isAuthenticated,
+		getAuthToken,
+		getAuthTokenFromLocalStorage,
+		logout,
+	};
+});
