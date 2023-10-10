@@ -2,14 +2,14 @@
     <form class="container">
         <ErrorHeader :errorMessages="errorMessages"></ErrorHeader>
         <LoginHeader></LoginHeader>
-        <UsernameInput @usernameChanged="updateUsername"></UsernameInput>
-        <PasswordInput @passwordChanged="updatePassword"></PasswordInput>
-        <SubmitLogin @errorsOccured="updateErrorMessages" :username="username" :password="password"
+        <UsernameInput v-model="formData.username"></UsernameInput>
+        <PasswordInput v-model="formData.password"></PasswordInput>
+        <SubmitLogin @errorsOccured="updateErrorMessages" :username="formData.username" :password="formData.password"
             :formIsValid="formIsValid">
         </SubmitLogin>
     </form>
 </template>
-
+  
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
 
@@ -18,6 +18,11 @@ import LoginHeader from "@/components/input/login/login-header.vue"
 import PasswordInput from "@/components/input/login/password-input.vue";
 import UsernameInput from "@/components/input/login/username-input.vue";
 import SubmitLogin from "@/components/input/login/submit-login.vue";
+
+interface FormData {
+    username: string;
+    password: string;
+}
 
 export default defineComponent({
     components: {
@@ -28,44 +33,32 @@ export default defineComponent({
         SubmitLogin
     },
     setup() {
-        const inputUsername = ref("");
-        const updateUsername = (value: string) => {
-            inputUsername.value = value
-        }
-        const username = computed(() => {
-            return inputUsername.value;
-        })
+        const formData = ref({
+            username: "",
+            password: ""
+        } as FormData);
 
-        const inputPassword = ref("");
-        const updatePassword = (value: string) => {
-            inputPassword.value = value;
-        }
-        const password = computed(() => {
-            return inputPassword.value;
-        })
+        const updateInputField = (field: keyof FormData, value: string) => {
+            formData.value[field] = value;
+        };
 
         const formIsValid = computed(() => {
-            return inputUsername.value.length > 0 &&
-                inputPassword.value.length > 0;
-        })
+            return formData.value.username.length > 0 && formData.value.password.length > 0;
+        });
 
         const inputErrorMessages = ref([] as Array<string>);
         const updateErrorMessages = (value: Array<string>) => {
             inputErrorMessages.value = value;
-        }
-        const errorMessages = computed(() => {
-            return inputErrorMessages.value;
-        })
+        };
 
         return {
-            username,
-            updateUsername,
-            password,
-            updatePassword,
+            formData,
+            updateInputField,
             formIsValid,
             updateErrorMessages,
-            errorMessages
-        }
+            errorMessages: inputErrorMessages
+        };
     }
-})
+});
 </script>
+  
