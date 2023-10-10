@@ -2,8 +2,8 @@
     <form class="container">
         <ErrorHeader :errorMessages="errorMessages"></ErrorHeader>
         <LoginHeader></LoginHeader>
-        <UsernameInput v-model="formData.username"></UsernameInput>
-        <PasswordInput v-model="formData.password"></PasswordInput>
+        <UsernameInput @usernameChanged="updateInputField('username', $event)"></UsernameInput>
+        <PasswordInput @passwordChanged="updateInputField('password', $event)"></PasswordInput>
         <SubmitLogin @errorsOccured="updateErrorMessages" :username="formData.username" :password="formData.password"
             :formIsValid="formIsValid">
         </SubmitLogin>
