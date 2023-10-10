@@ -19,7 +19,7 @@ function getAliases(): AliasOptions {
 	return [
 		{
 			find: "~bootstrap",
-			replacement: fileURLToPath(new URL("./node_modules/bootstrap", import.meta.url)),
+			replacement: fileURLToPath(new URL("./node_modules/@types/bootstrap", import.meta.url)),
 		},
 		{
 			find: "@/src",

@@ -13,14 +13,14 @@ export const routes = [
 		component: () => import("./Login/login.vue"),
 	} as RouteRecordRaw,
 	{
-		path: "/register",
-		name: "Register",
+		path: "/create-user",
+		name: "Create User",
 		meta: {
 			allowAnonymous: true,
 			noLayout: true,
-			pageTitle: "MiniOpply | Register",
+			pageTitle: "MiniOpply | Create User",
 		} as IRouteMeta,
-		component: () => import("./Register/register.vue"),
+		component: () => import("./CreateUser/create-user.vue"),
 	} as RouteRecordRaw,
 	{
 		path: "/",

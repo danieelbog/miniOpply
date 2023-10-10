@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "ESNext",
     "useDefineForClassFields": true,
+    "allowJs": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
     "module": "ESNext",
-    "lib": [ "ES2020", "DOM", "DOM.Iterable" ],
-    "skipLibCheck": true,
     "paths": {
       "@/src/*":["./src/*"],
       "@/views/*":["./src/views/*"],
@@ -13,7 +17,8 @@
       "@/stores/*":["./src/stores/*"],
       "@/api/*": [ "./src/api/*" ],
       "@/router/*": ["./src/router/*"],
-      "@/assets/*":["./src/assets/*"]
+      "@/assets/*":["./src/assets/*"],
+      "bootstrap/dist/js/bootstrap" : ["./node_modules/types/bootstrap"]
     },
     /* Bundler mode */
     "moduleResolution": "node",
@@ -21,7 +26,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve",
+    "jsx": "preserve"
   },
   "include": [ "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue" ],
   "references": [ { "path": "./tsconfig.node.json" } ]

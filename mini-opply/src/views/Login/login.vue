@@ -1,50 +1,70 @@
 <template>
-    <form>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+    <form class="container">
+        <ErrorHeader :errorMessages="errorMessages"></ErrorHeader>
+        <LoginHeader></LoginHeader>
+        <UsernameInput @usernameChanged="updateUsername"></UsernameInput>
+        <PasswordInput @passwordChanged="updatePassword"></PasswordInput>
+        <SubmitLogin @errorsOccured="updateErrorMessages" :username="username" :password="password"
+            :formIsValid="formIsValid">
+        </SubmitLogin>
     </form>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { useAuthStore } from '@/src/stores/auth.store';
-import { IAuthToken } from '@/src/types/IAuthToken';
-import router from '@/src/router';
+import { computed, defineComponent, ref } from 'vue';
+
+import ErrorHeader from "@/components/input/error-header.vue";
+import LoginHeader from "@/components/input/login/login-header.vue"
+import PasswordInput from "@/components/input/login/password-input.vue";
+import UsernameInput from "@/components/input/login/username-input.vue";
+import SubmitLogin from "@/components/input/login/submit-login.vue";
 
 export default defineComponent({
+    components: {
+        ErrorHeader,
+        LoginHeader,
+        UsernameInput,
+        PasswordInput,
+        SubmitLogin
+    },
     setup() {
-        const authStore = useAuthStore();
-        const login = async () => {
-            const authToken = {
-                username: "danielbgd",
-                password: "P@ssw0rd"
-            } as IAuthToken;
-            await authStore.getAuthToken(authToken)
-            if (authStore.isAuthenticated) loginRedirect();
+        const inputUsername = ref("");
+        const updateUsername = (value: string) => {
+            inputUsername.value = value
         }
+        const username = computed(() => {
+            return inputUsername.value;
+        })
 
-        const logout = () => {
-            authStore.logout();
+        const inputPassword = ref("");
+        const updatePassword = (value: string) => {
+            inputPassword.value = value;
         }
+        const password = computed(() => {
+            return inputPassword.value;
+        })
 
-        function loginRedirect() {
-            router.push({ path: router.currentRoute.value.query.redirect as string ?? "/" });
+        const formIsValid = computed(() => {
+            return inputUsername.value.length > 0 &&
+                inputPassword.value.length > 0;
+        })
+
+        const inputErrorMessages = ref([] as Array<string>);
+        const updateErrorMessages = (value: Array<string>) => {
+            inputErrorMessages.value = value;
         }
+        const errorMessages = computed(() => {
+            return inputErrorMessages.value;
+        })
 
         return {
-            login,
-            logout
+            username,
+            updateUsername,
+            password,
+            updatePassword,
+            formIsValid,
+            updateErrorMessages,
+            errorMessages
         }
     }
 })
