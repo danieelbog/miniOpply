@@ -4,7 +4,7 @@ import { IAuthToken } from "../types/IAuthToken";
 import { ref } from "vue";
 
 export const useAuthStore = defineStore("auth", () => {
-	const authToken = ref(null as IAuthToken);
+	var authToken = ref(null as IAuthToken | null);
 
 	const setAuthToken = (authTokenDto: IAuthToken) => {
 		try {
@@ -17,13 +17,14 @@ export const useAuthStore = defineStore("auth", () => {
 	};
 
 	const isAuthenticated = () => {
-		return authToken.value?.token;
+		return authToken?.value?.token;
 	};
 
 	const getAuthTokenFromLocalStorage = () => {
-		if (authToken.value && authToken.value.token) return;
+		if (authToken && authToken?.value?.token) return;
 		try {
-			const storedAuthToken = JSON.parse(localStorage.getItem("authToken")) as IAuthToken;
+			const storedAuthTokenStr = localStorage.getItem("authToken");
+			const storedAuthToken = storedAuthTokenStr ? (JSON.parse(storedAuthTokenStr) as IAuthToken) : null;
 			if (storedAuthToken && storedAuthToken.token) {
 				setAuthToken(storedAuthToken);
 			}
@@ -33,7 +34,7 @@ export const useAuthStore = defineStore("auth", () => {
 	};
 
 	const getAuthToken = async (authTokenDto: IAuthToken) => {
-		if (authToken.value && authToken.value.token) return;
+		if (authToken && authToken?.value?.token) return;
 		getAuthTokenFromLocalStorage();
 		try {
 			const response = await api.post("/api-token-auth/", authTokenDto);
