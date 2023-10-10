@@ -1,18 +1,32 @@
 <template>
     <main>
-        <div class="d-grid justify-content-center">
-            <router-link to="/">Go to Home</router-link>
-            <router-link to="/quotes">Go to quotes</router-link>
-            <router-link to="/supplier">Go to supplier</router-link>
-            <router-link to="/register">Go to register</router-link>
-            <router-link to="/login">Go to login</router-link>
-        </div>
-        <router-view></router-view>
+        <component :is="layoutComponent"></component>
     </main>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { computed, defineComponent, defineAsyncComponent, onMounted } from 'vue';
+import router from '@/router/index';
+import { Popover } from "bootstrap";
+
 export default defineComponent({
+    setup() {
+        const layoutComponent = computed(() => {
+            return router.currentRoute.value.meta?.noLayout
+                ? defineAsyncComponent(() => import("@/components/layouts/empty-layout.vue"))
+                : defineAsyncComponent(() => import("@/components/layouts/default-layout.vue"))
+        })
+
+        onMounted(() => {
+            document.querySelectorAll('[data-bs-toggle="popover"]')
+                .forEach(popover => {
+                    new Popover(popover)
+                })
+        })
+
+        return {
+            layoutComponent
+        }
+    }
 })
 </script>

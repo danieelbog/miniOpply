@@ -18,6 +18,10 @@ export default defineConfig({
 function getAliases(): AliasOptions {
 	return [
 		{
+			find: "~bootstrap",
+			replacement: fileURLToPath(new URL("./node_modules/bootstrap", import.meta.url)),
+		},
+		{
 			find: "@/src",
 			replacement: fileURLToPath(new URL("./src", import.meta.url)),
 		},
