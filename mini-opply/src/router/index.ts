@@ -8,10 +8,10 @@ var router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-	const authStore = useAuthStore();
 	const allowAnonymous = to.matched.some((record) => record.meta.allowAnonymous);
 	const loginQuery = { path: "/login", query: { redirect: to.fullPath } };
 
+	const authStore = useAuthStore();
 	if (!allowAnonymous && !authStore.isAuthenticated()) {
 		authStore.getAuthTokenFromLocalStorage();
 		if (authStore.isAuthenticated()) next();

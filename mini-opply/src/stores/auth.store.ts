@@ -4,7 +4,7 @@ import { IAuthToken } from "../types/IAuthToken";
 import { ref } from "vue";
 
 export const useAuthStore = defineStore("auth", () => {
-	const authToken = ref({} as IAuthToken);
+	const authToken = ref(null as IAuthToken);
 
 	const setAuthToken = (authTokenDto: IAuthToken) => {
 		try {
@@ -46,14 +46,18 @@ export const useAuthStore = defineStore("auth", () => {
 		}
 	};
 
-	const logout = async () => {
+	const resetAuthorizationHeader = () => {
 		api.defaults.headers.common["Authorization"] = "";
+	};
+
+	const logout = async () => {
+		authToken.value = null;
+		resetAuthorizationHeader();
 		try {
 			localStorage.removeItem("authToken");
 		} catch (error) {
 			console.error("Error removing authToken from local storage:", error);
 		}
-		authToken.value = null;
 	};
 
 	return {
