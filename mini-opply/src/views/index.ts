@@ -30,10 +30,10 @@ export const routes = [
 			noLayout: false,
 			pageTitle: "MiniOpply | Suppliers",
 		} as IRouteMeta,
-		component: () => import("./Supplier/supplier.vue"),
+		component: () => import("./Suppliers/suppliers.vue"),
 	} as RouteRecordRaw,
 	{
-		path: "/supplier",
+		path: "/supplier/:id",
 		name: "Supplier",
 		meta: {
 			allowAnonymous: false,
