@@ -22,9 +22,6 @@ export default defineComponent({
             type: Object as () => ISupplier,
             required: true
         }
-    },
-    setup() {
-        return {}
     }
 })
 </script>
