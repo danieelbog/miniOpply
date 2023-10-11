@@ -57,7 +57,6 @@ export default defineComponent({
             }
         };
 
-        // Load initial suppliers when the component is mounted
         onMounted(loadSuppliers);
 
         return {

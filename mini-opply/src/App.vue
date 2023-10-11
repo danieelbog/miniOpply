@@ -1,5 +1,5 @@
 <template>
-    <main class="bg-light">
+    <main class="bg-light h-100">
         <component :is="layoutComponent"></component>
         <ScrollToTop></ScrollToTop>
     </main>
