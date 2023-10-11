@@ -33,7 +33,7 @@ export const routes = [
 		component: () => import("./Suppliers/suppliers.vue"),
 	} as RouteRecordRaw,
 	{
-		path: "/supplier/:id",
+		path: "/supplier/:supplierId",
 		name: "Supplier",
 		meta: {
 			allowAnonymous: false,
