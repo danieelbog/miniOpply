@@ -9,7 +9,7 @@
 import { computed, defineComponent, defineAsyncComponent, onMounted } from 'vue';
 import { Popover } from "bootstrap";
 import router from '@/router/index';
-import ScrollToTop from "@/components/wrappers/scroll-to-top/scroll-to-top.vue"
+import ScrollToTop from "@/components/layouts/scroll-to-top/scroll-to-top.vue"
 
 export default defineComponent({
     components: {
@@ -27,6 +27,7 @@ export default defineComponent({
                 .forEach(popover => {
                     new Popover(popover)
                 })
+            document.getElementById("external-loader")?.remove();
         })
 
         return {

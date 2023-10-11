@@ -1,14 +1,13 @@
 <template>
     <div ref="observable">
-        <div class="d-flex justify-content-center m-2 text-primary">
-            <div class="spinner-border ml-auto spinner-border-sm" role="status" aria-hidden="true"></div>
-        </div>
+        <Loader></Loader>
         <slot name="default"></slot>
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onBeforeUnmount, onMounted, ref } from "vue";
+import Loader from "@/components/layouts/loader/loader.vue";
 
 interface ObserverOptions {
     root: HTMLElement;
@@ -16,6 +15,9 @@ interface ObserverOptions {
 }
 
 export default defineComponent({
+    components: {
+        Loader
+    },
     props: {
         options: {
             type: Object as () => ObserverOptions,
