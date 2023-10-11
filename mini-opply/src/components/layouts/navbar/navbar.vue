@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg border-bottom p-2 mb-5 shadow-sm">
+    <nav class="navbar navbar-expand-lg border-bottom p-2 mb-5 shadow-sm sticky-top bg-white">
         <div class="w-100 d-flex justify-content-between">
             <router-link class="navbar-brand" to="/">MiniOpply</router-link>
             <div class="nav-menu-dropdown-button btn-group dropstart">
