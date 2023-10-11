@@ -1,8 +1,24 @@
 <template>
-    <footer class="footer">
-        <hr />
+    <footer class="bg-light text-dark fst-italic fw-light border-top shadow text-center py-3">
         <div class="container">
-            This is a footer
+            <p> MiniOpply &copy; {{ currentYear }} {{ yourName }}</p>
         </div>
     </footer>
 </template>
+  
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+    data() {
+        return {
+            yourName: 'Daniel Bogdan',
+        };
+    },
+    computed: {
+        currentYear(): number {
+            return new Date().getFullYear();
+        },
+    },
+});
+</script>
