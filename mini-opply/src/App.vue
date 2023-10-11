@@ -1,15 +1,20 @@
 <template>
     <main>
         <component :is="layoutComponent"></component>
+        <ScrollToTop></ScrollToTop>
     </main>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, defineAsyncComponent, onMounted } from 'vue';
-import router from '@/router/index';
 import { Popover } from "bootstrap";
+import router from '@/router/index';
+import ScrollToTop from "@/components/wrappers/scroll-to-top/scroll-to-top.vue"
 
 export default defineComponent({
+    components: {
+        ScrollToTop
+    },
     setup() {
         const layoutComponent = computed(() => {
             return router.currentRoute.value.meta?.noLayout
