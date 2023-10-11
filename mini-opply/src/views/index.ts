@@ -25,7 +25,7 @@ export const routes = [
 		component: () => import("./CreateUser/create-user.vue"),
 	} as RouteRecordRaw,
 	{
-		path: "/",
+		path: "/suppliers",
 		name: "Suppliers",
 		meta: {
 			allowAnonymous: false,
@@ -47,7 +47,7 @@ export const routes = [
 		component: () => import("./Supplier/supplier.vue"),
 	} as RouteRecordRaw,
 	{
-		path: "/quotes",
+		path: "/",
 		name: "Quotes",
 		meta: {
 			allowAnonymous: false,
