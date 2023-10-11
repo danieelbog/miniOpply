@@ -9,7 +9,7 @@ export const useAuthStore = defineStore("auth", () => {
 	const setAuthToken = (authTokenDto: IAuthToken) => {
 		localStorage.setItem("authToken", JSON.stringify(authTokenDto));
 		authToken.value = authTokenDto;
-		api.defaults.headers.common["Authorization"] = authToken.value.token;
+		api.defaults.headers.common["Authorization"] = "Token " + authToken.value.token;
 	};
 
 	const isAuthenticated = () => {
