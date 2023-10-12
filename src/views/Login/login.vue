@@ -5,7 +5,7 @@
         <TextInput label="Username" field="username" inputId="inputUsername" :isRequired="true"
             :validationSchema="usernameValidationSchema" @usernameChanged="updateInputField('username', $event)">
         </TextInput>
-        <TextInput label="Password" field="password" inputId="inputPassword" :isRequired="true"
+        <TextInput label="Password" field="password" inputId="inputPassword" inputType="password" :isRequired="true"
             :validationSchema="passwordValidationSchema" @passwordChanged="updateInputField('password', $event)">
         </TextInput>
         <SubmitLogin @errorsOccured="updateErrorMessages" :username="formData.username" :password="formData.password"

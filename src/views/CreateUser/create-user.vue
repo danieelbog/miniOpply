@@ -5,7 +5,7 @@
         <TextInput label="Username" field="username" inputId="inputUsername" :isRequired="true"
             :validationSchema="usernameValidationSchemaCreate" @usernameChanged="updateInputField('username', $event)">
         </TextInput>
-        <TextInput label="Password" field="password" inputId="inputPassword" :isRequired="true"
+        <TextInput label="Password" field="password" inputId="inputPassword" :isRequired="true" inputType="password"
             :validationSchema="passwordValidationSchemaCreate" @passwordChanged="updateInputField('password', $event)">
         </TextInput>
         <TextInput label="First Name" field="firstName" inputId="inputFirstName"
@@ -14,8 +14,8 @@
         <TextInput label="Last Name" field="lastName" inputId="inputLastName"
             :validationSchema="passwordValidationSchemaCreate" @lastNameChanged="updateInputField('lastName', $event)">
         </TextInput>
-        <TextInput label="Email" field="email" inputId="inputEmail" :validationSchema="emailValidationSchemaCreate"
-            @emailChanged="updateInputField('email', $event)">
+        <TextInput label="Email" field="email" inputId="inputEmail" inputType="email"
+            :validationSchema="emailValidationSchemaCreate" @emailChanged="updateInputField('email', $event)">
         </TextInput>
         <SubmitCreateUser @userCreated="updateSuccessMessage" @errorsOccured="updateErrorMessages"
             :username="formData.username" :password="formData.password" :firstName="formData.firsName"
