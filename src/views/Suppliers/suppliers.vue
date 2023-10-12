@@ -1,14 +1,13 @@
 <template>
-    <div>
-        <ErrorHeader v-if="errorMessages.length > 0" :errorMessages="errorMessages" />
-        <ObservableInfiniteScrollWrapper v-else @intersect="loadSuppliers" :showObservable="showObservable">
-            <template v-slot:content>
-                <div v-for="supplier in suppliers" :key="supplier.id">
-                    <SupplierCard :supplier="supplier" />
-                </div>
-            </template>
-        </ObservableInfiniteScrollWrapper>
-    </div>
+    <RowHeaderWrapper v-if="errorMessages.length > 0" :messages="errorMessages" :applyErrorStyle="true">
+    </RowHeaderWrapper>
+    <ObservableInfiniteScrollWrapper v-else @intersect="loadSuppliers" :showObservable="showObservable">
+        <template v-slot:content>
+            <div v-for="supplier in suppliers" :key="supplier.id">
+                <SupplierCard :supplier="supplier" />
+            </div>
+        </template>
+    </ObservableInfiniteScrollWrapper>
 </template>
   
 <script lang="ts">
@@ -16,13 +15,13 @@ import { defineComponent, ref, onMounted } from "vue";
 import { ISupplier } from "@/src/types/ISupplier";
 import { api } from "@/src/api";
 
-import ErrorHeader from "@/components/input/error-header.vue";
+import RowHeaderWrapper from "@/components/input/headers/form-header.vue";
 import ObservableInfiniteScrollWrapper from "@/components/wrappers/observable-infinite-scroll-wrapper.vue";
 import SupplierCard from "@/components/cards/supplier/supplier-card.vue";
 
 export default defineComponent({
     components: {
-        ErrorHeader,
+        RowHeaderWrapper,
         ObservableInfiniteScrollWrapper,
         SupplierCard,
     },

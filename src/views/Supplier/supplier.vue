@@ -1,9 +1,8 @@
 <template>
-    <div>
-        <Loader v-if="!supplier"></Loader>
-        <ErrorHeader v-if="!supplier" :errorMessages="errorMessages" />
-        <ImageSupplierCard v-else :supplier="supplier" />
-    </div>
+    <RowHeaderWrapper v-if="!supplier" :messages="errorMessages" :applyErrorStyle="true">
+        <Loader v-if="showLoader"></Loader>
+    </RowHeaderWrapper>
+    <ImageSupplierCard v-else :supplier="supplier" />
 </template>
   
 <script lang="ts">
@@ -11,20 +10,22 @@ import { defineComponent, onMounted, ref } from 'vue';
 import { ISupplier } from '@/src/types/ISupplier';
 import { api } from '@/src/api';
 
+
 import Loader from "@/components/layouts/loader/loader.vue";
-import ErrorHeader from '@/components/input/error-header.vue';
+import RowHeaderWrapper from "@/components/input/headers/form-header.vue";
 import ImageSupplierCard from '@/components/cards/supplier/image-supplier-card.vue';
 import router from '@/src/router';
 
 export default defineComponent({
     components: {
         Loader,
-        ErrorHeader,
+        RowHeaderWrapper,
         ImageSupplierCard,
     },
     setup() {
         const supplier = ref<ISupplier | null>(null);
         const errorMessages = ref<string[]>([]);
+        const showLoader = ref(true);
 
         const loadSupplier = async () => {
             try {
@@ -40,6 +41,8 @@ export default defineComponent({
             } catch (error) {
                 const statusText = (error as any).response?.statusText;
                 errorMessages.value = [statusText];
+            } finally {
+                showLoader.value = false;
             }
         };
 
@@ -48,6 +51,7 @@ export default defineComponent({
         return {
             supplier,
             errorMessages,
+            showLoader
         };
     },
 });

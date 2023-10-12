@@ -1,7 +1,7 @@
 <template>
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-4 mt-5">
-            <h2 class="text-center">{{ text }}</h2>
+            <slot></slot>
         </div>
     </div>
 </template>
@@ -10,9 +10,15 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
     props: {
-        text: {
-            type: String,
-            required: true
+        messages: {
+            type: Array<String>,
+            required: false,
+            default: []
+        },
+        isErrorMessages: {
+            type: Boolean,
+            required: false,
+            default: false
         }
     }
 })

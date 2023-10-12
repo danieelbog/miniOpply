@@ -1,8 +1,7 @@
 <template>
     <form class="container">
-        <SuccessMessage :successMessage="successMessage"></SuccessMessage>
-        <ErrorHeader :errorMessages="errorMessages"></ErrorHeader>
-        <FromHeader :text="'Create User'"></FromHeader>
+        <RowHeaderWrapper :headerTitle="'Create User'" :messages="displayMessages" :applyErrorStyle="showError()">
+        </RowHeaderWrapper>
         <UsernameInput @usernameChanged="updateInputField('username', $event)"></UsernameInput>
         <PasswordInput @passwordChanged="updateInputField('password', $event)"></PasswordInput>
         <FirstNameInput @firstNameChanged="updateInputField('firstName', $event)"></FirstNameInput>
@@ -10,16 +9,15 @@
         <EmailInput @emailChanged="updateInputField('email', $event)"></EmailInput>
         <SubmitCreateUser @userCreated="updateSuccessMessage" @errorsOccured="updateErrorMessages"
             :username="formData.username" :password="formData.password" :firstName="formData.firsName"
-            :lastName="formData.lastName" :email="formData.email" :formIsValid="formIsValid"></SubmitCreateUser>
+            :lastName="formData.lastName" :email="formData.email" :formIsValid="formIsValid">
+        </SubmitCreateUser>
     </form>
 </template>
   
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
 
-import SuccessMessage from "@/components/input/success-header.vue";
-import ErrorHeader from "@/components/input/error-header.vue";
-import FromHeader from "@/components/input/form-header.vue";
+import RowHeaderWrapper from "@/components/input/headers/form-header.vue";
 import UsernameInput from "@/components/input/create-user/username-input.vue";
 import PasswordInput from "@/components/input/create-user/password-input.vue";
 import FirstNameInput from "@/components/input/create-user/first-name-input.vue";
@@ -34,9 +32,7 @@ interface FormData {
 
 export default defineComponent({
     components: {
-        SuccessMessage,
-        ErrorHeader,
-        FromHeader,
+        RowHeaderWrapper,
         UsernameInput,
         PasswordInput,
         FirstNameInput,
@@ -63,23 +59,33 @@ export default defineComponent({
             );
         });
 
-        const inputErrorMessages = ref([] as Array<string>);
+        const errorMessages = ref([] as Array<string>);
         const updateErrorMessages = (value: Array<string>) => {
-            inputErrorMessages.value = value;
+            errorMessages.value = [];
+            errorMessages.value = value;
         };
 
-        const inputSuccessMessage = ref("");
+        const successMessages = ref([] as Array<string>);
         const updateSuccessMessage = (value: string) => {
-            inputSuccessMessage.value = value;
+            successMessages.value = [];
+            successMessages.value.push(value);
         };
+
+        const showError = () => {
+            return errorMessages.value.length > 0;
+        }
+        const displayMessages = computed(() => {
+            return showError() ? errorMessages.value : successMessages.value;
+        });
 
         return {
             formData,
+            showError,
             updateInputField,
-            errorMessages: inputErrorMessages,
             updateErrorMessages,
-            successMessage: inputSuccessMessage,
             updateSuccessMessage,
+            errorMessages,
+            displayMessages,
             formIsValid
         };
     }

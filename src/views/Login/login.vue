@@ -1,7 +1,7 @@
 <template>
     <form class="container">
-        <ErrorHeader :errorMessages="errorMessages"></ErrorHeader>
-        <FromHeader :text="'Login'"></FromHeader>
+        <RowHeaderWrapper :headerTitle="'Create User'" :messages="errorMessages" :applyErrorStyle="true">
+        </RowHeaderWrapper>
         <UsernameInput @usernameChanged="updateInputField('username', $event)"></UsernameInput>
         <PasswordInput @passwordChanged="updateInputField('password', $event)"></PasswordInput>
         <SubmitLogin @errorsOccured="updateErrorMessages" :username="formData.username" :password="formData.password"
@@ -13,8 +13,7 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
 
-import ErrorHeader from "@/components/input/error-header.vue";
-import FromHeader from "@/components/input/form-header.vue"
+import RowHeaderWrapper from "@/components/input/headers/form-header.vue";
 import PasswordInput from "@/components/input/login/password-input.vue";
 import UsernameInput from "@/components/input/login/username-input.vue";
 import SubmitLogin from "@/components/input/login/submit-login.vue";
@@ -26,8 +25,7 @@ interface FormData {
 
 export default defineComponent({
     components: {
-        ErrorHeader,
-        FromHeader,
+        RowHeaderWrapper,
         UsernameInput,
         PasswordInput,
         SubmitLogin
@@ -46,9 +44,9 @@ export default defineComponent({
             return formData.value.username.length > 0 && formData.value.password.length > 0;
         });
 
-        const inputErrorMessages = ref([] as Array<string>);
+        const errorMessages = ref([] as Array<string>);
         const updateErrorMessages = (value: Array<string>) => {
-            inputErrorMessages.value = value;
+            errorMessages.value = value;
         };
 
         return {
@@ -56,7 +54,7 @@ export default defineComponent({
             updateInputField,
             formIsValid,
             updateErrorMessages,
-            errorMessages: inputErrorMessages
+            errorMessages
         };
     }
 });

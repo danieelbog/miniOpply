@@ -1,28 +1,21 @@
 <template>
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-4">
-            <div class="form-group">
-                <div class="mb-3">
-                    <label for="inputEmail" class="form-label">
-                        First Name
-                    </label>
-                    <input v-bind="email" type="email" class="form-control" id="inputEmail">
-                    <ErrorMessage :errorMessage="errors.email"></ErrorMessage>
-                </div>
-            </div>
-        </div>
-    </div>
+    <InputRawWrapper :text="'Email'">
+        <input v-bind="email" type="email" class="form-control" id="inputEmail">
+        <ErrorMessage :errorMessage="errors.email"></ErrorMessage>
+    </InputRawWrapper>
 </template>
 
 <script lang="ts">
-import { defineComponent, watch } from 'vue'
+import { defineComponent, watch } from 'vue';
 import { useForm } from 'vee-validate';
+import InputRawWrapper from "../wrappers/row-wrapper.vue";
 import ErrorMessage from "../error-message.vue";
 import * as yup from 'yup';
 
 export default defineComponent({
     components: {
-        ErrorMessage
+        ErrorMessage,
+        InputRawWrapper
     },
     setup(props, context) {
         const { errors, defineInputBinds } = useForm({

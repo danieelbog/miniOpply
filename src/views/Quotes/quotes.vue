@@ -1,14 +1,13 @@
 <template>
-    <div>
-        <ErrorHeader v-if="errorMessages.length > 0" :errorMessages="errorMessages" />
-        <ObservableInfiniteScrollWrapper v-else @intersect="loadQuotes" :showObservable="showObservable">
-            <template v-slot:content>
-                <div v-for="quote in quotes" :key="quote.id">
-                    <QuoteCard :quote="quote" />
-                </div>
-            </template>
-        </ObservableInfiniteScrollWrapper>
-    </div>
+    <RowHeaderWrapper v-if="errorMessages.length > 0" :messages="errorMessages" :applyErrorStyle="true">
+    </RowHeaderWrapper>
+    <ObservableInfiniteScrollWrapper v-else @intersect="loadQuotes" :showObservable="showObservable">
+        <template v-slot:content>
+            <div v-for="quote in quotes" :key="quote.id">
+                <QuoteCard :quote="quote" />
+            </div>
+        </template>
+    </ObservableInfiniteScrollWrapper>
 </template>
   
 <script lang="ts">
@@ -16,13 +15,13 @@ import { defineComponent, ref, onMounted } from "vue";
 import { IQuote } from "@/src/types/IQuote";
 import { api } from "@/src/api";
 
-import ErrorHeader from "@/components/input/error-header.vue";
+import RowHeaderWrapper from "@/components/input/headers/form-header.vue";
 import ObservableInfiniteScrollWrapper from "@/components/wrappers/observable-infinite-scroll-wrapper.vue";
 import QuoteCard from "@/components/cards/quote/quote-card.vue";
 
 export default defineComponent({
     components: {
-        ErrorHeader,
+        RowHeaderWrapper,
         ObservableInfiniteScrollWrapper,
         QuoteCard,
     },
