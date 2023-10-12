@@ -1,9 +1,13 @@
 <template>
     <form class="container">
-        <RowHeaderWrapper :headerTitle="'Create User'" :messages="errorMessages" :applyErrorStyle="true">
+        <RowHeaderWrapper :headerTitle="'Login'" :messages="errorMessages" :applyErrorStyle="true">
         </RowHeaderWrapper>
-        <UsernameInput @usernameChanged="updateInputField('username', $event)"></UsernameInput>
-        <PasswordInput @passwordChanged="updateInputField('password', $event)"></PasswordInput>
+        <TextInput label="Username" field="username" inputId="inputUsername" :isRequired="true"
+            :validationSchema="usernameValidationSchema" @usernameChanged="updateInputField('username', $event)">
+        </TextInput>
+        <TextInput label="Password" field="password" inputId="inputPassword" :isRequired="true"
+            :validationSchema="passwordValidationSchema" @passwordChanged="updateInputField('password', $event)">
+        </TextInput>
         <SubmitLogin @errorsOccured="updateErrorMessages" :username="formData.username" :password="formData.password"
             :formIsValid="formIsValid">
         </SubmitLogin>
@@ -12,11 +16,11 @@
   
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
-
-import RowHeaderWrapper from "@/components/layouts/wrappers/forms/row-header-wrapper.vue";
-import PasswordInput from "@/components/input/login/password-input.vue";
-import UsernameInput from "@/components/input/login/username-input.vue";
+import { usernameValidationSchema } from "@/types/validations/username-schema";
+import { passwordValidationSchema } from "@/types/validations/password-schema";
+import RowHeaderWrapper from "@/components/layouts/headers/form-header.vue";
 import SubmitLogin from "@/components/input/login/submit-login.vue";
+import TextInput from "@/components/input/text-input.vue";
 
 interface FormData {
     username: string;
@@ -26,9 +30,8 @@ interface FormData {
 export default defineComponent({
     components: {
         RowHeaderWrapper,
-        UsernameInput,
-        PasswordInput,
-        SubmitLogin
+        SubmitLogin,
+        TextInput
     },
     setup() {
         const formData = ref({
@@ -54,7 +57,9 @@ export default defineComponent({
             updateInputField,
             formIsValid,
             updateErrorMessages,
-            errorMessages
+            errorMessages,
+            usernameValidationSchema,
+            passwordValidationSchema
         };
     }
 });

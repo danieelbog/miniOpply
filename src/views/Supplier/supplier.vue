@@ -12,7 +12,7 @@ import { api } from '@/src/api';
 
 
 import Loader from "@/components/layouts/loader/loader.vue";
-import RowHeaderWrapper from "@/components/layouts/wrappers/forms/row-header-wrapper.vue";
+import RowHeaderWrapper from "@/components/layouts/headers/form-header.vue";
 import ImageSupplierCard from '@/components/cards/supplier/image-supplier-card.vue';
 import router from '@/src/router';
 

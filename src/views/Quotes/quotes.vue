@@ -15,7 +15,7 @@ import { defineComponent, ref, onMounted } from "vue";
 import { IQuote } from "@/src/types/IQuote";
 import { api } from "@/src/api";
 
-import RowHeaderWrapper from "@/components/layouts/wrappers/forms/row-header-wrapper.vue";
+import RowHeaderWrapper from "@/components/layouts/headers/form-header.vue";
 import ObservableInfiniteScrollWrapper from "@/components/layouts/wrappers/observable/observable-infinite-scroll-wrapper.vue";
 import QuoteCard from "@/components/cards/quote/quote-card.vue";
 
