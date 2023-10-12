@@ -25,6 +25,17 @@ export const routes = [
 		component: () => import("./CreateUser/create-user.vue"),
 	} as RouteRecordRaw,
 	{
+		path: "/",
+		name: "Quotes",
+		meta: {
+			allowAnonymous: false,
+			noLayout: false,
+			pageTitle: "MiniOpply | Quotes",
+			showInNavigation: true,
+		} as IRouteMeta,
+		component: () => import("./Quotes/quotes.vue"),
+	} as RouteRecordRaw,
+	{
 		path: "/suppliers",
 		name: "Suppliers",
 		meta: {
@@ -45,16 +56,5 @@ export const routes = [
 			showInNavigation: false,
 		} as IRouteMeta,
 		component: () => import("./Supplier/supplier.vue"),
-	} as RouteRecordRaw,
-	{
-		path: "/",
-		name: "Quotes",
-		meta: {
-			allowAnonymous: false,
-			noLayout: false,
-			pageTitle: "MiniOpply | Quotes",
-			showInNavigation: true,
-		} as IRouteMeta,
-		component: () => import("./Quotes/quotes.vue"),
 	} as RouteRecordRaw,
 ];
