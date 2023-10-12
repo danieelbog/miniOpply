@@ -1,6 +1,8 @@
 {
   "name": "mini-opply",
-  "version": "0.0.0",
+  "description": "A small project demonstrating some basic Web development features.",
+  "author": "Danieel Bogdan",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "vite",
