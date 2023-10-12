@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import RowInputLabel from "./labels/row-input-label.vue";
+import RowInputLabel from "@/components/layouts/labels/row-input-label.vue";
 
 export default defineComponent({
     components: {

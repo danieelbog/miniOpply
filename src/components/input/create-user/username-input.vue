@@ -8,8 +8,8 @@
 <script lang="ts">
 import { defineComponent, watch } from 'vue';
 import { useForm } from 'vee-validate';
-import InputRawWrapper from "../wrappers/row-wrapper.vue";
 import ErrorMessage from "../error-message.vue";
+import InputRawWrapper from "@/components/layouts/wrappers/forms/row-wrapper.vue";
 import * as yup from 'yup';
 
 export default defineComponent({

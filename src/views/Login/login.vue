@@ -13,7 +13,7 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
 
-import RowHeaderWrapper from "@/components/input/headers/form-header.vue";
+import RowHeaderWrapper from "@/components/layouts/wrappers/forms/row-header-wrapper.vue";
 import PasswordInput from "@/components/input/login/password-input.vue";
 import UsernameInput from "@/components/input/login/username-input.vue";
 import SubmitLogin from "@/components/input/login/submit-login.vue";

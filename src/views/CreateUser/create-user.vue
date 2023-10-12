@@ -17,7 +17,7 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue';
 
-import RowHeaderWrapper from "@/components/input/headers/form-header.vue";
+import RowHeaderWrapper from "@/components/layouts/wrappers/forms/row-header-wrapper.vue";
 import UsernameInput from "@/components/input/create-user/username-input.vue";
 import PasswordInput from "@/components/input/create-user/password-input.vue";
 import FirstNameInput from "@/components/input/create-user/first-name-input.vue";

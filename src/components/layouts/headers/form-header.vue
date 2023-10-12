@@ -12,7 +12,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import RowHeaderWrapper from "../wrappers/row-header-wrapper.vue"
+import RowHeaderWrapper from "@/components/layouts/wrappers/forms/row-header-wrapper.vue"
 
 export default defineComponent({
     components: {

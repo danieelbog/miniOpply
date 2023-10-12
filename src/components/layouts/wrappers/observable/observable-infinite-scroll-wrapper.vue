@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
-import ObservableWrapper from "./observable/observable-wrapper.vue";
+import ObservableWrapper from "@/components/layouts/wrappers/observable/observable-wrapper.vue";
 
 export default defineComponent({
     components: { ObservableWrapper },
