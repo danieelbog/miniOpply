@@ -1,7 +1,7 @@
 <template>
     <form class="container">
         <ErrorHeader :errorMessages="errorMessages"></ErrorHeader>
-        <LoginHeader></LoginHeader>
+        <FromHeader :text="'Login'"></FromHeader>
         <UsernameInput @usernameChanged="updateInputField('username', $event)"></UsernameInput>
         <PasswordInput @passwordChanged="updateInputField('password', $event)"></PasswordInput>
         <SubmitLogin @errorsOccured="updateErrorMessages" :username="formData.username" :password="formData.password"
@@ -14,7 +14,7 @@
 import { computed, defineComponent, ref } from 'vue';
 
 import ErrorHeader from "@/components/input/error-header.vue";
-import LoginHeader from "@/components/input/login/login-header.vue"
+import FromHeader from "@/components/input/form-header.vue"
 import PasswordInput from "@/components/input/login/password-input.vue";
 import UsernameInput from "@/components/input/login/username-input.vue";
 import SubmitLogin from "@/components/input/login/submit-login.vue";
@@ -27,7 +27,7 @@ interface FormData {
 export default defineComponent({
     components: {
         ErrorHeader,
-        LoginHeader,
+        FromHeader,
         UsernameInput,
         PasswordInput,
         SubmitLogin

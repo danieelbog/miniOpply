@@ -2,7 +2,7 @@
     <form class="container">
         <SuccessMessage :successMessage="successMessage"></SuccessMessage>
         <ErrorHeader :errorMessages="errorMessages"></ErrorHeader>
-        <CreateUserHeader></CreateUserHeader>
+        <FromHeader :text="'Create User'"></FromHeader>
         <UsernameInput @usernameChanged="updateInputField('username', $event)"></UsernameInput>
         <PasswordInput @passwordChanged="updateInputField('password', $event)"></PasswordInput>
         <FirstNameInput @firstNameChanged="updateInputField('firstName', $event)"></FirstNameInput>
@@ -19,7 +19,7 @@ import { computed, defineComponent, ref } from 'vue';
 
 import SuccessMessage from "@/components/input/success-header.vue";
 import ErrorHeader from "@/components/input/error-header.vue";
-import CreateUserHeader from "@/components/input/create-user/create-user-header.vue";
+import FromHeader from "@/components/input/form-header.vue";
 import UsernameInput from "@/components/input/create-user/username-input.vue";
 import PasswordInput from "@/components/input/create-user/password-input.vue";
 import FirstNameInput from "@/components/input/create-user/first-name-input.vue";
@@ -36,7 +36,7 @@ export default defineComponent({
     components: {
         SuccessMessage,
         ErrorHeader,
-        CreateUserHeader,
+        FromHeader,
         UsernameInput,
         PasswordInput,
         FirstNameInput,

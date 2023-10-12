@@ -8,8 +8,9 @@
                 <div class="card-body">
                     <h5 class="card-title">Ammount: {{ quote.amount }}</h5>
                     <p class="card-text">Quote Id: {{ quote.id }}</p>
-                    <router-link class="btn btn-primary" :to="'/supplier/' + quote.supplier_id">Check supplier
-                        page</router-link>
+                    <router-link class="btn btn-primary" :to="'/supplier/' + quote.supplier_id">
+                        Check supplier page
+                    </router-link>
                 </div>
                 <div class="card-footer text-muted">
                     {{ formatDate(new Date(quote.created)) }}
@@ -31,7 +32,7 @@ export default defineComponent({
             required: true
         }
     },
-    setup(props) {
+    setup() {
         const formatDate = (date: Date) => {
             return date.toLocaleDateString("en-US", options);
         }
