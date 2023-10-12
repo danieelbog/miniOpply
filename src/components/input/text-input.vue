@@ -51,7 +51,7 @@ export default defineComponent({
         });
 
         watch(value, async (newValue) => {
-            if (meta.valid)
+            if (meta.valid && (newValue as string).length != 1)
                 context.emit(`${props.field}Changed`, newValue)
         })
 
