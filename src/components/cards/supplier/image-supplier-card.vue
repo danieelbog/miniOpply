@@ -1,5 +1,5 @@
 <template>
-    <div class="row justify-content-center w-100 g-0 p-3">
+    <div class="row justify-content-center g-0 p-3">
         <div class="card shadow mb-4">
             <div class="card-body text-center">
                 <img :src="'https://robohash.org/' + supplier.id" alt="avatar" class="rounded-circle img-fluid"

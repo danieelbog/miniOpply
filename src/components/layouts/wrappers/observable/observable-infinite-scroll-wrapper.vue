@@ -1,5 +1,5 @@
 <template>
-    <div class="observable-infiinite-scroll-wrapper d-flex overflow-auto" :class="{
+    <div class="row justify-content-center g-0 p-3" :class="{
         'flex-column-reverse': isColumnReverse,
         'flex-column': !isColumnReverse,
     }">

@@ -1,5 +1,5 @@
 <template>
-    <span v-if="errorMessage" class="fst-italic fw-lighter text-danger">{{ errorMessage }}</span>
+    <p class="fst-italic fw-lighter text-danger mt-1">{{ errorMessage }}</p>
 </template>
 
 <script lang="ts">
