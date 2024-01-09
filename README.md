@@ -52,15 +52,15 @@
 
 Mini Opply is a project that demonstates basic web development features.
 
-1. **Authentication UI**: Users can create new accounts
+1. **Authentication UI**: Users can create new accounts => https://main--miniopply.netlify.app/create-user
    [![Mini Opply Supplier Screen Shot][create-user-screenshot]](https://miniopply.netlify.app/create-user)
-   and **obtain authentication tokens** to access the system.
+   and **obtain authentication tokens** to access the system => https://main--miniopply.netlify.app/login
    [![Mini Opply Supplier Screen Shot][login-screenshot]](https://miniopply.netlify.app/login)
-2. **List of Suppliers**: Users can view a list of available suppliers.
+2. **List of Suppliers**: Users can view a list of available suppliers. => https://main--miniopply.netlify.app/suppliers
    [![Mini Opply Supplier Screen Shot][suppliers-screenshot]](https://miniopply.netlify.app/suppliers)
-3. **Supplier Details**: Users can view detailed information about specific suppliers.
+3. **Supplier Details**: Users can view detailed information about specific suppliers. https://main--miniopply.netlify.app/supplier/10
    [![Mini Opply Supplier Screen Shot][supplier-screenshot]](https://miniopply.netlify.app/supplier/19)
-4. **Created Quotes**: Users can view quotes they have created.
+4. **Created Quotes**: Users can view quotes they have created. => https://main--miniopply.netlify.app/
    [![Mini Opply Quotes Screen Shot][quotes-screenshot]](https://miniopply.netlify.app/)
 
 Supported features info:
