@@ -4,7 +4,7 @@ import { IAuthToken } from "../types/IAuthToken";
 import { ref } from "vue";
 
 export const useAuthStore = defineStore("auth", () => {
-	var authToken = ref(null as IAuthToken | null);
+	const authToken = ref(null as IAuthToken | null);
 
 	const setAuthToken = (authTokenDto: IAuthToken) => {
 		localStorage.setItem("authToken", JSON.stringify(authTokenDto));
